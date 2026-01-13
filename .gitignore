@@ -1,0 +1,16 @@
+# Build directories
+build/
+Debug/
+Release/
+
+# Windows files
+*.exe
+*.pdb
+*.obj
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
