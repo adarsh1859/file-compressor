@@ -1,0 +1,31 @@
+name: C++ CI & Docker Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install C++ dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++ cmake make
+
+    - name: Build C++ project
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release
+        cmake --build .
+
+    - name: Build Docker image
+      run: |
+        docker build -t file-compressor-ci .
