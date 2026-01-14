@@ -21,11 +21,24 @@ jobs:
 
     - name: Build C++ project
       run: |
+        rm -rf build
         mkdir build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release
         cmake --build .
 
+    - name: Verify Docker is available
+      run: |
+        docker --version
+        docker info
+
     - name: Build Docker image
       run: |
         docker build -t file-compressor-ci .
+
+    - name: Run Docker sanity test
+      run: |
+        echo "hello hello hello" > input.txt
+        docker run --rm \
+          -v ${{ github.workspace }}:/data \
+          file-compressor-ci compress /data/input.txt /data/output.huff
