@@ -1,3 +1,5 @@
+![CI](https://github.com/adarsh1859/file-compressor/actions/workflows/ci.yml/badge.svg)
+
 # File Compression & Decompression Tool (C++)
 
 A high-performance, lossless file compression tool built in C++ using
